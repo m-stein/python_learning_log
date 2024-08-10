@@ -2,7 +2,7 @@
 
 {% block content %}
 <h2>Topic "{{ topic.text }}"</h2>
-<h3>Entries</h3>
+<p><a href="{% url 'learning_logs:new_entry' topic.id %}">New Entry</a></p>
 <ul>
     {% for entry in entries %}
     <li>

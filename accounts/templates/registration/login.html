@@ -1,0 +1,12 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+    <h2>Log in</h2>
+    {% if  form.errors %}
+        <p>Username or password invalid!</p>
+    {% endif %}
+    <form action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button name="submit">Log in</button>
+    </form>
+{% endblock content %}

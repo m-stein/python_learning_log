@@ -6,7 +6,7 @@
 <ul>
     {% for entry in entries %}
     <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ entry.date_added|date:'M d, Y H:i' }} <a href="{% url 'learning_logs:edit_entry' entry.id %}">(edit)</a></p>
         <div style="text-indent: 25px;"><i>{{ entry.text|linebreaks }}</i></div>
     </li>
     {% empty %}

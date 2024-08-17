@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <style>
-            input, input:focus {
+            input[type="text"], input[type="text"]:focus, input[type="password"], input[type="password"]:focus {
                 outline: none;
                 align-items: normal;
                 border-color: rgba(0, 128, 128, 1);
@@ -144,6 +144,7 @@
                     </form>
                 {% else %}
                     <a href="{% url 'accounts:login' %}">Log in</a>
+                    <a href="{% url 'accounts:register' %}">Register</a>
                 {% endif %}
             </h3>
             {% block content %}{% endblock content %}

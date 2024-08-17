@@ -25,6 +25,8 @@ def new_topic(request):
         if form.is_valid():
             form.save()
             return redirect('learning_logs:topics')
+        else:
+            print("Warning: form not valid")
 
     # else return an empty form for the user to fill in data
     return render(request, template_name='learning_logs/new_topic.html', context={'form': TopicForm()})
@@ -41,6 +43,8 @@ def new_entry(request, topic_id):
             entry.topic = topic
             entry.save()
             return redirect('learning_logs:topic', topic_id=topic_id)
+        else:
+            print("Warning: form not valid")
 
     # else return an empty form for the user to fill in data
     return render(request, template_name='learning_logs/new_entry.html',
@@ -56,6 +60,8 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             return redirect('learning_logs:topic', topic_id=entry.topic.id)
+        else:
+            print("Warning: form not valid")
 
     # else return an empty form for the user to fill in data
     return render(request, template_name='learning_logs/edit_entry.html',

@@ -1,6 +1,6 @@
 {% extends 'learning_logs/base.html' %}
 {% block content %}
-    <h2>New Entry</h2>
+    <h2>New Entry for Topic: {{ topic.text }}</h2>
     <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
         {% csrf_token %}
         {{ form.as_div }}

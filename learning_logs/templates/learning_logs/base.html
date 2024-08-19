@@ -1,153 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <style>
-            input[type="text"], input[type="text"]:focus, input[type="password"], input[type="password"]:focus {
-                outline: none;
-                align-items: normal;
-                border-color: rgba(0, 128, 128, 1);
-                border-style: none;
-                border-radius: 3px;
-                background: rgba(0, 128, 128, 0.2);
-                box-sizing: content-box;
-                color: rgb(0, 0, 0);
-                display: inline;
-                font: inherit;
-                height: auto;
-                padding-top: 1px;
-                padding-bottom: 2px;
-                padding-right: 5px;
-                padding-left: 5px;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-right: 0px;
-                margin-left: 0px;
-                perspective-origin: 0 0;
-                text-align: start;
-                text-decoration: none;
-                transform-origin: 0 0;
-                width: auto;
-                -moz-appearance: none;
-                -webkit-logical-height: 1em; /* Chrome ignores auto, so we have to use this hack to set the correct height  */
-                -webkit-logical-width: auto; /* Chrome ignores auto, but here for completeness */
-                filter: none;
-            }
-            textarea, textarea:focus {
-                outline: none;
-                align-items: normal;
-                border-color: rgba(0, 128, 128, 0.3);
-                border-style: soolid;
-                border-radius: 5px;
-                background: rgba(0, 128, 128, 0.05);
-                box-sizing: content-box;
-                color: rgb(0, 0, 0);
-                display: inline;
-                font: inherit;
-                height: auto;
-                padding-top: 1px;
-                padding-bottom: 2px;
-                padding-right: 5px;
-                padding-left: 5px;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-right: 0px;
-                margin-left: 0px;
-                perspective-origin: 0 0;
-                text-align: start;
-                text-decoration: none;
-                transform-origin: 0 0;
-                width: auto;
-                -moz-appearance: none;
-                -webkit-logical-height: 1em; /* Chrome ignores auto, so we have to use this hack to set the correct height  */
-                -webkit-logical-width: auto; /* Chrome ignores auto, but here for completeness */
-                filter: none;
-            }
-            a, button {
-                align-items: normal;
-                background: rgba(0, 128, 128, 0.7);
-                border-style: none;
-                border-radius: 3px;
-                box-sizing: content-box;
-                color: rgb(255, 255, 255);
-                cursor: pointer;
-                display: inline;
-                font: inherit;
-                height: auto;
-                padding-top: 1px;
-                padding-bottom: 2px;
-                padding-right: 5px;
-                padding-left: 5px;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                margin-right: 0px;
-                margin-left: 0px;
-                perspective-origin: 0 0;
-                text-align: start;
-                text-decoration: none;
-                transform-origin: 0 0;
-                width: auto;
-                -moz-appearance: none;
-                -webkit-logical-height: 1em; /* Chrome ignores auto, so we have to use this hack to set the correct height  */
-                -webkit-logical-width: auto; /* Chrome ignores auto, but here for completeness */
-            }
-            a.inline, button.inline {
-                align-items: normal;
-                background: rgba(0, 0, 0, 0);
-                border-color: rgba(0, 0, 0, 0);
-                border-style: none;
-                box-sizing: content-box;
-                color: rgb(0, 128, 128);
-                cursor: pointer;
-                display: inline;
-                font: inherit;
-                height: auto;
-                perspective-origin: 0 0;
-                text-align: start;
-                text-decoration: none;
-                transform-origin: 0 0;
-                width: auto;
-                -moz-appearance: none;
-                -webkit-logical-height: 1em; /* Chrome ignores auto, so we have to use this hack to set the correct height  */
-                -webkit-logical-width: auto; /* Chrome ignores auto, but here for completeness */
-            }
-            html, body {
-                height:100%;
-                background: rgb(220, 240, 240);
-                margin: 0px;
-                display:flex;
-                flex-direction:column;
-            }
-            div.body {
-                width:700px;
-                height=100%;
-                margin:0 auto;
-                background: rgb(255, 255, 255);
-                padding: 50px;
-                padding-top: 10px;
-                padding-bottom: 100px;
-                flex-grow: 1;
-            }
-        </style>
-        <meta charset="UTF-8">
-        <title>Learning Log</title>
-    </head>
-    <body>
-        <div class="body">
-            <h1 style="text-align:center;">Learning Log</h1>
-            <h3 style="text-align:center;">
-                <a href="{% url 'learning_logs:index' %}">Home</a>
-                <a href="{% url 'learning_logs:topics' %}">Topics</a>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Log</title>
+
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light m-4 border">
+        <div class="container-fluid">
+
+            <!-- Page title with self-reference -->
+            <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
+                Learning Log
+            </a>
+
+            <!-- Use a drop-down menu button for navigation if the screen is too small for the navigation bar -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Part of navigation that can be collapsed into the button -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <ul class="navbar-nav me-auto mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'learning_logs:topics' %}">
+                            Topics
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Account-related links -->
+                <ul class="navbar-nav ms-auto mb-md-0">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">
+                                Hello, {{ user.username }}!
+                            </span>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:register' %}">
+                                Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:login' %}">
+                                Log in
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
                 {% if user.is_authenticated %}
-                    <form style="display: inline-block;" action="{% url 'accounts:logout' %}" method="post">
+                    <form action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
-                        <button name="submit">Log out</button>
+                        <button name="submit" class="btn btn-outline-secondary btn-sm">
+                            Log out
+                        </button>
                     </form>
-                {% else %}
-                    <a href="{% url 'accounts:login' %}">Log in</a>
-                    <a href="{% url 'accounts:register' %}">Register</a>
                 {% endif %}
-            </h3>
-            {% block content %}{% endblock content %}
+
+            </div>
         </div>
-    </body>
+    </nav>
+
+    <main class="container">
+
+        <!-- Individual title of each page -->
+        <div class="pb-2 mb-2 border-bottom">
+            {% block page_header %}
+            {% endblock page_header %}
+        </div>
+
+        <!-- Individual content of each page -->
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+
+</body>
 </html>

@@ -1,12 +1,30 @@
 {% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+    <h2>
+        My Topics
+    </h2>
+{% endblock page_header %}
+
 {% block content %}
-    <h2>Topics</h2>
-    <p><a href="{% url 'learning_logs:new_topic' %}">New Topic</a></p>
-    <ul>
-        {% for topic in topics %}
-            <li><a class="inline" href="{% url 'learning_logs:topic' topic.id %}">{{ topic.text }}</a></li>
-        {% empty %}
-            No topics have been added yet!
-        {% endfor %}
-    </ul>
+    <p>
+        <a class="btn btn-primary" href="{% url 'learning_logs:new_topic' %}">
+            Add Topic
+        </a>
+    </p>
+    {% for topic in topics %}
+        <div class="card mb-3">
+            <h5 class="card-header">
+                <a href="{% url 'learning_logs:topic' topic.id %}">
+                    {{ topic.text }}
+                </a>
+            </h5>
+        </div>
+    {% empty %}
+        <p class="pt-2 ps-3">
+            <i>
+                Ups... no topics so far. Let's create some!
+            </i>
+        </p>
+    {% endfor %}
 {% endblock content %}

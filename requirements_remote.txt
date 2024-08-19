@@ -1,0 +1,7 @@
+# Additional requirements only needed when the project is hosted on Platform.sh
+
+# Takes over the role of the development server we are using locally
+gunicorn
+
+# Required to let Django manage the Postgres database that Platform.sh uses
+psycopg2
